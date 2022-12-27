@@ -23,25 +23,23 @@ include_once './Plantilla/topBar.php';
         </div>
 
         <div class="col-xl-4 col-md-8 mb-4">
-            <form class="user">
+            <form class="user" action="./service/serviceInsertar.php" method="POST" enctype="multipart/form-data" >
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Name">
+                        <input type="text" name="name" class="form-control form-control-user" id="exampleFirstName" placeholder="Name">
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Cost $">
+                        <input type="text" name="cost" class="form-control form-control-user" id="exampleLastName" placeholder="Cost $">
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="txt" class="form-control form-control-user" id="exampleInputEmail" placeholder="description">
+                    <input type="text" name="description" class="form-control form-control-user" id="exampleInputEmail" placeholder="description">
                 </div>
                 <div class="form-group">
-                    <input type="txt" class="form-control form-control-user" id="exampleInputEmail" placeholder="description">
+                    <input type="file" name="image" class="form-control form-control-user" id="exampleInputEmail" placeholder="description">
                 </div>
 
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                    Save
-                </a>
+                <input type="submit" class="btn btn-primary btn-user btn-block" value="Save">
                 <hr>
             </form>
 
@@ -65,33 +63,36 @@ include_once './Plantilla/topBar.php';
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>Description</th>
+                                    <th>Cost</th>
+                                    <th>Image</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>Description</th>
+                                    <th>Cost</th>
+                                    <th>Image</th>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                             <tbody>
+                                <?php
+                                include_once './conexion/conexion.php';
+                                $query = "SELECT*FROM service";
+                                $result = $conexion->query($query);
+                                while($row = $result->fetch_assoc()){
+                                ?>
                                 <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
+                                    <td><?php echo $row['name_service'] ?></td>
+                                    <td><?php echo $row['description'] ?></td>
+                                    <td><?php echo $row['cost_service'] ?></td>
+                                    <td><img height="70px" src="data:image/jpg;base64,<?php echo base64_encode($row['image']);?>" alt=""></td>
+                                    <td><a href="#">Mod</a></td>
                                 </tr>
-
+                                    <?php }?>
                             </tbody>
                         </table>
                     </div>
