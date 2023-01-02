@@ -100,7 +100,9 @@ if (!empty($_POST['usuario']) and !empty($_POST['clave'])) {
 $usuario=$_POST['usuario'];
 $clave=$_POST['clave'];
 //conectar a la base de datos 
-$conexion=mysqli_connect("localhost", "root", "", "roaring");
+//$conexion=mysqli_connect("localhost", "root", "", "roaring");
+$conexion=mysqli_connect("localhost", "k240819_roaring", "adminroaring", "k240819_roaring");
+
 
 //mysqli_query($conexion, "INSERT INTO usuario(name,con) VALUES ('Mario','$clave')");
 //$consulta="SELECT * FROM usuario WHERE name = '$usuario'";
