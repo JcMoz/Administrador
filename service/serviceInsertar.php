@@ -17,7 +17,7 @@ include_once '../conexion/conexion.php';
 
                 echo 1;
             } else {
-                echo "No";
+                echo 0;
             }
        
 

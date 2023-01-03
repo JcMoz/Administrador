@@ -26,17 +26,21 @@ include_once './Plantilla/topBar.php';
             <form class="user" action="" id="services" method="POST" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="text" name="name" id="name" class="form-control form-control-user" id="exampleFirstName" placeholder="Name">
+                      <input type="text" id="_id" name="_id" >
+
+                        <input type="text" name="name" id="name" class="form-control form-control-user"  placeholder="Name">
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" name="cost" id="cost" class="form-control form-control-user" id="exampleLastName" placeholder="Cost $">
+                        <input type="text" name="cost" id="cost" class="form-control form-control-user"  placeholder="Cost $">
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="description" id="description" class="form-control form-control-user" id="exampleInputEmail" placeholder="description">
+                    <input type="text" name="description" id="description" class="form-control form-control-user"  placeholder="description">
                 </div>
                 <div class="form-group">
-                    <input type="file" name="image" id="image" class="form-control form-control-user" id="exampleInputEmail" placeholder="description">
+                    <input type="file" name="image" id="image" class="form-control form-control-user"  placeholder="description">
+                </div>
+                <div class="form-group" id="imagen-edit">
                 </div>
 
                 <input type="submit" id="guardar" class="btn btn-primary btn-user btn-block" value="Save">
