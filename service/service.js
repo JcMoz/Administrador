@@ -27,51 +27,55 @@ $(document).ready(function () {
     var _id = $("#_id").val();
     var description = $("#description").val();
     var files = $("#image")[0].files[0];
-    if($("#name").val()==""  || $("#cost").val()=="" || $("#description").val()=="" || edit === false ? $("#image").val()=="":$("#name").val()=="" ){
+    if (
+      $("#name").val() == "" ||
+      $("#cost").val() == "" ||
+      $("#description").val() == "" ||
+      edit === false
+        ? $("#image").val() == ""
+        : $("#name").val() == ""
+    ) {
       Swal.fire({
-        icon: 'error',
-        title: 'error',
-        text: 'Empty fields'
+        icon: "error",
+        title: "error",
+        text: "Empty fields",
       });
+    } else {
+      formData.append("file", files);
+      formData.append("_id", _id);
+      formData.append("name", name);
+      formData.append("cost", costo);
+      formData.append("description", description);
+      $.ajax({
+        url:
+          edit === false
+            ? "service/serviceInsertar.php"
+            : "service/serviceEdit.php",
+        type: "post",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          console.log(JSON.parse(response));
+          data = JSON.parse(response);
+          if (data.success == 1) {
+            Swal.fire({
+              icon: "success",
+              title: data.title,
+              text: data.mensaje,
+            });
 
-    }else{
-
-    
-    formData.append("file", files);
-    formData.append("_id", _id);
-    formData.append("name", name);
-    formData.append("cost", costo);
-    formData.append("description", description);
-    $.ajax({
-      url:
-        edit === false
-          ? "service/serviceInsertar.php"
-          : "service/serviceEdit.php",
-      type: "post",
-      data: formData,
-      contentType: false,
-      processData: false,
-      success: function (response) {
-        console.log(JSON.parse(response));
-        data = JSON.parse(response);
-        if (data.success == 1) {
-          Swal.fire({
-            icon: 'success',
-            title: data.title,
-            text: data.mensaje
-          });
-          
-          fetchTasks();
-          $("#services").trigger("reset");
-          let $select = $("#imagen-edit");
-          $select.empty();
-          edit=false;
-        } else {
-          //alert("Formato de imagen incorrecto.");
-        }
-      },
-    });
-    return false;
+            fetchTasks();
+            $("#services").trigger("reset");
+            let $select = $("#imagen-edit");
+            $select.empty();
+            edit = false;
+          } else {
+            //alert("Formato de imagen incorrecto.");
+          }
+        },
+      });
+      return false;
     }
   });
 
@@ -148,49 +152,46 @@ $(document).ready(function () {
   });
 
   //PARA CAMBIAR EL ESTADO
-  $(document).on("click", ".estado-item", function () {
+  $("#dataTable").on("click", ".estado-item", function () {
     //muestra la alerta
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "The status will be changed and this service will no longer be displayed on the website!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
     }).then((result) => {
       if (result.isConfirmed) {
-        estado();
+        let id = $(this).attr("id-item");
+        $("#_id").val(id);
+        console.log(id);
+        var formData = new FormData();
+
+        formData.append("id", id);
+
+        //otro ajax
+        $.ajax({
+          url: "service/estado.php",
+          type: "post",
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (response) {
+            data = JSON.parse(response);
+            Swal.fire({
+              icon: "success",
+              title: data.title,
+              text: data.mensaje,
+            });
+            fetchTasks();
+
+          },
+        });
       }
     });
   });
-
-  function estado(){
-    
-    let id = $(this).attr("id-item");
-    $("#_id").val(id);
-    console.log(id);
-    var formData = new FormData();
-
-    formData.append("id", id);
-    
-    //otro ajax
-    $.ajax({
-      url: "service/estado.php",
-      type: "post",
-      data: formData,
-      contentType: false,
-      processData: false,
-      success: function (response) {
-        data= JSON.parse(response);
-        Swal.fire({
-          icon: 'success',
-          title: data.title,
-          text: data.mensaje
-        });
-      },
-    });
-  }
   //FIN DE PARA CAMBIAR EL ESTADO
 
   //PARA EDITAR LA INFORMACION

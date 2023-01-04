@@ -6,8 +6,8 @@ if (isset($_POST['id'])) {
     $id = $_POST['id'];
 
 
-    $query = "SELECT estado FROM service WHERE id ='$id'";
-    $result = $conexion->query($query);
+    $busqueda = "SELECT estado FROM service WHERE id ='$id'";
+    $result = $conexion->query($busqueda);
     //var_dump($result);
 
 
@@ -16,6 +16,7 @@ if (isset($_POST['id'])) {
 
         $estado = $row['estado'];
     }
+    //echo $estado;
 
     if ($estado == "Activo") {
         $query = "UPDATE service SET estado='Inactivo' WHERE id = '$id'";
