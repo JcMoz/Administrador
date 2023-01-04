@@ -13,12 +13,22 @@ include_once '../conexion/conexion.php';
             values('$nombre','$cost','$descrip','$image','$estado')";
            
             $resultado = $conexion->query($query);
+            $json = array();
             if ($resultado) {
-
-                echo 1;
+                $json[] = array(
+                    'success'=>1,
+                    'title' => 'Saved',
+                    'mensaje'=>'Record saved successfully!'
+                  );
+                 // echo 1;
             } else {
-                echo 0;
+                $json[] = array(
+                    'title' => "Error",
+                    'mensaje'=>"There was an error!"
+                  );
             }
+           $jsonstring = json_encode($json[0]);
+           echo $jsonstring;
        
 
 

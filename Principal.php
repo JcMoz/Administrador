@@ -26,19 +26,19 @@ include_once './Plantilla/topBar.php';
             <form class="user" action="" id="services" method="POST" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                      <input type="text" id="_id" name="_id" >
+                      <input type="hidden" id="_id" name="_id" >
 
-                        <input type="text" name="name" id="name" class="form-control form-control-user"  placeholder="Name">
+                        <input type="text" name="name" id="name" class="form-control form-control-user"  placeholder="Name" required>
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" name="cost" id="cost" class="form-control form-control-user"  placeholder="Cost $">
+                        <input type="text" name="cost" id="cost" class="form-control form-control-user"  placeholder="Cost $" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="description" id="description" class="form-control form-control-user"  placeholder="description">
+                    <input type="text" name="description" id="description" class="form-control form-control-user"  placeholder="description" required>
                 </div>
                 <div class="form-group">
-                    <input type="file" name="image" id="image" class="form-control form-control-user"  placeholder="description">
+                    <input type="file" name="image" id="image" class="form-control form-control-user"  placeholder="description" required>
                 </div>
                 <div class="form-group" id="imagen-edit">
                 </div>
@@ -63,13 +63,14 @@ include_once './Plantilla/topBar.php';
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>Cost</th>
                                     <th>Image</th>
+                                    
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -79,6 +80,7 @@ include_once './Plantilla/topBar.php';
                                     <th>Description</th>
                                     <th>Cost</th>
                                     <th>Image</th>
+                                    
                                     <th>Action</th>
                                 </tr>
                             </tfoot>

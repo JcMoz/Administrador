@@ -27,7 +27,16 @@ $(document).ready(function () {
     var _id = $("#_id").val();
     var description = $("#description").val();
     var files = $("#image")[0].files[0];
+    if($("#name").val()==""  || $("#cost").val()=="" || $("#description").val()=="" || edit === false ? $("#image").val()=="":$("#name").val()=="" ){
+      Swal.fire({
+        icon: 'error',
+        title: 'error',
+        text: 'Empty fields'
+      });
 
+    }else{
+
+    
     formData.append("file", files);
     formData.append("_id", _id);
     formData.append("name", name);
@@ -43,17 +52,27 @@ $(document).ready(function () {
       contentType: false,
       processData: false,
       success: function (response) {
-        if (response != 0) {
+        console.log(JSON.parse(response));
+        data = JSON.parse(response);
+        if (data.success == 1) {
+          Swal.fire({
+            icon: 'success',
+            title: data.title,
+            text: data.mensaje
+          });
+          
           fetchTasks();
           $("#services").trigger("reset");
           let $select = $("#imagen-edit");
           $select.empty();
+          edit=false;
         } else {
           //alert("Formato de imagen incorrecto.");
         }
       },
     });
     return false;
+    }
   });
 
   //MOSTRANDO LOS SERVICIOS
@@ -71,13 +90,15 @@ $(document).ready(function () {
                       <td>${task.name}</td>
                       <td>${task.description}</td>
                       <td>${task.cost}</td>
-                      <td><img height="50px" src="data:image/png;base64,${task.image}"></td>
+                      <td><img height="40px" src="data:image/png;base64,${task.image}"></td>
+                      
                       <td>
-                      <a class="nav-link edit-item" id-item="${task.id}">
+                      <a title="Editar" class="nav-link edit-item" id-item="${task.id}">
 
                       <i class="fas fa-fw fa-edit"></i>
                       </a>
                       </td>
+                     
 
                     </tr>
                   `;
@@ -120,6 +141,37 @@ $(document).ready(function () {
       },
     });
   });
+
+  //PARA CAMBIAR EL ESTADO
+  
+
+  function estado(){
+    
+    let id = $(this).attr("id-item");
+    $("#_id").val(id);
+    console.log(id);
+    var formData = new FormData();
+
+    formData.append("id", id);
+    
+    //otro ajax
+    $.ajax({
+      url: "service/estado.php",
+      type: "post",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        data= JSON.parse(response);
+        Swal.fire({
+          icon: 'success',
+          title: data.title,
+          text: data.mensaje
+        });
+      },
+    });
+  }
+  //FIN DE PARA CAMBIAR EL ESTADO
 
   //PARA EDITAR LA INFORMACION
   $(document).on("click", ".edit-ite", (e) => {
