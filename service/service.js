@@ -91,14 +91,19 @@ $(document).ready(function () {
                       <td>${task.description}</td>
                       <td>${task.cost}</td>
                       <td><img height="40px" src="data:image/png;base64,${task.image}"></td>
-                      
+                      <td>${task.estado}</td>
                       <td>
                       <a title="Editar" class="nav-link edit-item" id-item="${task.id}">
 
                       <i class="fas fa-fw fa-edit"></i>
                       </a>
                       </td>
-                     
+                      <td>
+                      <a title="Cambio de Estado" class="nav-link estado-item " id-item="${task.id}">
+
+                      <i class="fa fa-cog"></i>
+                      </a>
+                      </td>
 
                     </tr>
                   `;
@@ -143,7 +148,22 @@ $(document).ready(function () {
   });
 
   //PARA CAMBIAR EL ESTADO
-  
+  $(document).on("click", ".estado-item", function () {
+    //muestra la alerta
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "The status will be changed and this service will no longer be displayed on the website!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        estado();
+      }
+    });
+  });
 
   function estado(){
     

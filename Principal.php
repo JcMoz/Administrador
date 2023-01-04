@@ -70,8 +70,10 @@ include_once './Plantilla/topBar.php';
                                     <th>Description</th>
                                     <th>Cost</th>
                                     <th>Image</th>
-                                    
-                                    <th>Action</th>
+                                    <th>Condition</th>
+                                    <th>Edit</th>
+                                    <th>Change</th>
+
                                 </tr>
                             </thead>
                             <tfoot>
@@ -80,8 +82,10 @@ include_once './Plantilla/topBar.php';
                                     <th>Description</th>
                                     <th>Cost</th>
                                     <th>Image</th>
-                                    
-                                    <th>Action</th>
+                                    <th>Condition</th>
+                                    <th>Edit</th>
+                                    <th>Change</th>
+
                                 </tr>
                             </tfoot>
                             <tbody id="servicios">
