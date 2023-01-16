@@ -111,7 +111,9 @@ $consulta = mysqli_query($conexion, "SELECT * FROM usuario WHERE name='$usuario'
 if ($row = mysqli_fetch_array($consulta)) {
     $contra=$row['con'];
     if (password_verify($clave, $contra)) {
-        $_SESSION['user_name']= $row['name'];
+        $_SESSION['user_name'] = $row['name'];
+        $_SESSION["userId"]    = $row['id'];
+
         echo mensajes('Welcome<br>', 'verde') . '<br>';
         echo '<meta http-equiv="refresh" content="2;url=Principal.php">';
        // header("location:../principal.php");  

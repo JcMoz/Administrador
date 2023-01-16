@@ -4,11 +4,11 @@
     session_start();
     if (!empty($_SESSION['user_name']) ) {
         if ($_SESSION['user_name'] == null){
-            echo '<meta http-equiv="refresh" content="2;url=index.php">';
+            header("location:index.php"); 
         }
     }else{
         
-            echo '<meta http-equiv="refresh" content="2;url=index.php">';
+            header("location:index.php");
         
     }
 ?>
@@ -104,6 +104,14 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Service</span></a>
     </li>
+
+    <!--para los chat-->
+    <li class="nav-item">
+        <a class="nav-link" href="../../Administrador/message.php">
+            <i class="fas fa-envelope fa-fw"></i>
+            <span>Chat</span></a>
+    </li>
+    <!--fin para los chat-->
 
     <!-- Nav Item - Tables -->
     <!--<li class="nav-item">
