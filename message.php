@@ -40,11 +40,21 @@ $result = $conexion->query($query);
                     $sms= "SELECT*FROM usuario WHERE tipo='cl'";
                     $resultado = $conexion->query($sms);
                             while($msj = $resultado->fetch_assoc()){
+                                if($msj["new"]=='new'){
                                 echo '
                                 <li><a href=?toUser='.$msj["id"].'>'.$msj["name"].'
-                                </a>
+                                </a> <span class="badge badge-danger badge-counter">
+                                <i class="fas fa-envelope fa-fw"></i>New</span>
                                 </li>
                                 ';
+                                }else{
+                                    echo '
+                                    <li><a href=?toUser='.$msj["id"].'>'.$msj["name"].'
+                                    </a>
+                                    </li>
+                                    ';
+
+                                }
                             }          
                     ?>
                     </ul>
@@ -62,6 +72,10 @@ $result = $conexion->query($query);
                                     <h4>
                                         <?php
                                         if(isset($_GET["toUser"])){
+                                            //ACTUALIZAMOS LOS MSJ
+                                            $update = "UPDATE usuario set new='opened' WHERE id='".$_GET["toUser"]."'";
+                                            $conexion->query($update);
+                                            //FIN DE ACTUALIZACION DE LOS MJS
                                             
                                             $userName= "SELECT*FROM usuario WHERE id='".$_GET["toUser"]."'";
                                             $re = $conexion->query($userName);

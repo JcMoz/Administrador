@@ -113,6 +113,22 @@
     </li>
     <!--fin para los chat-->
 
+    <!--para los performed-->
+    <li class="nav-item">
+        <a class="nav-link" href="../../Administrador/performed.php">
+            <i class="fas fa-chart-line  fa-fw"></i>
+            <span>Services Performed</span></a>
+    </li>
+    <!--fin para los performed-->
+
+    <!--para los chat-->
+    <li class="nav-item">
+        <a class="nav-link" href="../../Administrador/mail.php">
+            <i class="fas fa-address-book  fa-fw"></i>
+            <span>Mail</span></a>
+    </li>
+    <!--fin para los chat-->
+
     <!-- Nav Item - Tables -->
     <!--<li class="nav-item">
         <a class="nav-link" href="tables.html">
