@@ -16,8 +16,8 @@ function __construct(){
     $this->mail->Host ="smtp.gmail.com";
     $this->mail->Port =587;
 
-    $this->mail->Username = "jmozalfaro@gmail.com";
-    $this->mail->Password ="rmwcbcukfcmpizaj";
+    $this->mail->Username = "";
+    $this->mail->Password ="";
 
 }
 public function metEnviar(string $titulo, string $nombre, string $correo, string $asunto,string $bodyHTML){
